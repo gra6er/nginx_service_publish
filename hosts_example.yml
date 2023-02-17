@@ -1,0 +1,14 @@
+---
+all:
+  children:
+    target:
+      hosts:
+        192.191.190.189: # <host IP or DNS>
+          service_name: <service_name>
+          proxy_pass: http://10.20.30.40:5060
+        
+      vars:
+        ansible_user: <username>
+        ansible_password: <password>
+        ansible_become: yes
+        ansible_become_password: "{{ ansible_password }}"

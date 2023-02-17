@@ -1,0 +1,21 @@
+---
+# add service config to server
+# check config 
+# create symbolic link
+# reload nginx service
+
+- name: Template new service config
+  ansible.builtin.template:
+    src: service.conf.j2
+    dest: "/etc/nginx/sites-available/{{ service_name }}.conf"
+
+- name: Create symbolic link in sites-enabled folder
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ service_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ service_name }}.conf"
+    state: link
+
+- name: Reload Nginx config
+  ansible.builtin.systemd:
+    name: nginx.service
+    state: reloaded

@@ -1,0 +1,6 @@
+---
+- name: Add service to Nginx
+  hosts: target
+  gather_facts: no
+  roles:
+    - role: nginx_service_publish
